@@ -30,6 +30,8 @@
             <input class = "login" type = "submit" value = "> เข้าสู่ระบบ <">
         </form></center>
 
+        <p class = "header">[DEBUG] Your local IP is: <?php $global_localIP = $_SERVER['REMOTE_ADDR']; echo $global_localIP; ?></p>
+
         <footer>
             <a class = "footerlink" href="http://www.triamudom.ac.th">โรงเรียนเตรียมอุดมศึกษา</a>
         </footer>

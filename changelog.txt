@@ -5,7 +5,10 @@
 * = Changed, Tweaked, Fixed
 
 
-1.0.0 (Alpha)
+Alpha 1.0.1
+	+ Found a way to fetch local IP address, will be used in the future
+	
+Alpha 1.0.0
 	+ main style sheet
 	+ main login page
 	+ login info passing test

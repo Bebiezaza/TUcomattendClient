@@ -1,3 +1,10 @@
+p.header {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 #TUlogo {
     height: 3rem; vertical-align: middle
 }
@@ -5,13 +12,6 @@
 body {
     background-color: #ff6699;
     font-family: 'Kanit', serif;
-}
-
-p.header {
-    color: white;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
 }
 
 div.login {
@@ -22,15 +22,15 @@ div.login {
 }
 
 input.login {
-  background-color: #00b309;   
-  width: 340px;
-  padding: 10px;
-  border: 2px solid #00b308;
+    background-color: #00b309;   
+    width: 340px;
+    padding: 10px;
+    border: 2px solid #00b308;
 
-  color: white;
-  font-family: 'Kanit', serif;
-  font-weight: bold;
-  font-size: 1.2rem;
+    color: white;
+    font-family: 'Kanit', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 input.login:hover {
@@ -38,12 +38,36 @@ input.login:hover {
     width: 340px;
     padding: 10px;
     border: 2px solid #008a07;
-  
+    
     color: white;
     font-family: 'Kanit', serif;
     font-weight: bold;
     font-size: 1.2rem;
-  }
+}
+
+input.login_fail {
+    background-color: #f00;   
+    width: 340px;
+    padding: 10px;
+    border: 2px solid #f00;
+    
+    color: white;
+    font-family: 'Kanit', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+input.login_fail:hover {
+    background-color: #c00;   
+    width: 340px;
+    padding: 10px;
+    border: 2px solid #c00;
+    
+    color: white;
+    font-family: 'Kanit', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
 footer
 {

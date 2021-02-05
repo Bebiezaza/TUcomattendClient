@@ -28,4 +28,17 @@
             echo $success . "<br>";
         }
     }
+
+//register function
+    function register($conn, $sql, $success, $fail)
+    {
+        if (!mysqli_query($conn, $sql))
+        {
+            echo $fail . /*mysqli_error($conn) . */"</div>";
+        }
+        else
+        {
+            echo $success;
+        }
+    }
 ?>

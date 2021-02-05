@@ -19,9 +19,9 @@
     </header>
 
     <center><?php
-        include('globalvar.inc');
+        include('../TUcomattendServer/config.php');
         include('function/sql.php');
-        $conn = mysqli_connect($sql_server, $sql_username, $sql_password);
+        $conn = mysqli_connect($db_host, $db_user, $db_pass);
         error_reporting(0);
 
         $user = $_POST["login_name"];
@@ -29,7 +29,7 @@
         $bday = $_POST["bday"];
         $bmonth = $_POST["bmonth"];
         $byear = $_POST["byear"];
-        $birthday = $byear . "/" . $bmonth . "/" . $bday;
+        $birthday = $byear . "-" . $bmonth . "-" . $bday;
         
         if ($user == "")
         {
@@ -39,7 +39,7 @@
         <label for = "login_name">รหัสนักเรียน</label><br>
         <input id = "login_name" type = "text" name = "login_name"><br><br>
         
-        <label for = "login_name">รหัสผ่าน (สูงสุด 16 หลัก)</label><br>
+        <label for = "login_name">รหัสผ่าน</label><br>
         <input id = "login_pass" type = "password" name = "login_pass"><br><br>
 
         <label for="bday">วันเกิด</label>
@@ -102,33 +102,27 @@
         }
         else
         {
-            if(strlen($pass) > 16)
-            { ?>
-                <div class = 'login'>รหัสผ่านยาวเกิน 16 หลัก</div>
-                <form method = post>
-                    <input class = login type = "submit" value = "ลงทะเบียนใหม่">
-                </form>
-                
-                <?php 
-                //sql disconnect
-                mysqli_close($conn);
-                die;
+            if(!(int)$user)
+            {
+                echo "<div class = 'login'>ลงทะเบียนไม่สำเร็จ <br> รหัสนักเรียนไม่เป็นตัวเลข</div>";
             }
-        //select database
-            selectDB($conn, "TUcomattend");
+            else
+            {
+            //select database
+                selectDB($conn, "TUcomattend");
 
-        //add default student login
-            $sql = "INSERT INTO student_login
-            VALUES ('$user', '$pass', '$birthday');";
+            //add default student login
+                $sql = "INSERT INTO student_login
+                VALUES ('$user', MD5('$pass'), '$birthday');";
 
-            //write table
-            work($conn, $sql, "<div class = 'login'>ลงทะเบียนสำเร็จ</div>", "<div class = 'login'>ลงทะเบียนไม่สำเร็จ โปรดแจ้งผู้ดูแลระบบ: </div>", true);
+                //write table
+                register($conn, $sql, "<div class = 'login'>ลงทะเบียนสำเร็จ</div>", "<div class = 'login'>ลงทะเบียนไม่สำเร็จ <br> รหัสนักเรียนซ้ำ");
+            }
         }
 
         //sql disconnect
             mysqli_close($conn);
         ?>
-
         <form method = post action = "index.php">
             <input class = login type = "submit" value = "กลับสู่หน้าหลัก">
         </form>

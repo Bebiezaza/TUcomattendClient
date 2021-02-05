@@ -5,6 +5,11 @@
 * = Changed, Tweaked, Fixed
 
 
+Alpha 1.0.3
+	+ fetch client date-time
+	+ passwords encrypted
+	* password limitation removed
+
 Alpha 1.0.2
 	+ database missing detection
 	+ proper login system

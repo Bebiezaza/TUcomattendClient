@@ -19,19 +19,21 @@
         </header>
 
         <center><?php
-            include('globalvar.inc');
+            include('../TUcomattendServer/config.php');
             include('function/sql.php');
-            $conn = mysqli_connect($sql_server, $sql_username, $sql_password);
+            $conn = mysqli_connect($db_host, $db_user, $db_pass);
 
             $user = $_POST["login_name"];
-            $pass = $_POST["login_pass"];
+            $pass = md5($_POST["login_pass"]);
 
             if ($user == "")
             {
-                echo "<font size = 6><b>ไม่ได้ลงชื่อผู้ใช้งาน</b></font>"
-                ?><form method = post action = index.php>
-                    <input type = submit value = "กลับไปเข้าสู่ระบบ">
-                </form><?php
+?>
+                <p class="header">ไม่ได้ลงชื่อผู้ใช้งาน</p>
+                <form method = post action = index.php>
+                    <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
+                </form>
+<?php
                 die;
             }
 
@@ -48,18 +50,22 @@
                     {
                         if ($user != $row["username"])
                         {
-                            echo "<font size = 6><b>ไม่มีชื่อผู้ใช้นี้ในระบบ</b></font>";
-                            ?><form method = post action = index.php>
-                                <input type = submit value = "กลับไปเข้าสู่ระบบ">
-                            </form><?php
+?>
+                            <p class="header">ไม่มีชื่อผู้ใช้นี้ในระบบ</p>
+                            <form method = post action = index.php>
+                                <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
+                            </form>
+<?php
                             die;
                         }
                         elseif ($pass != $row["password"])
                         {
-                            echo "<font size = 6><b>รหัสผ่านผิด</b></font>";
-                            ?><form method = post action = index.php>
-                                <input type = submit value = "กลับไปเข้าสู่ระบบ">
-                            </form><?php
+?>
+                            <p class="header">รหัสผ่านผิด</p>
+                            <form method = post action = index.php>
+                                <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
+                            </form>
+<?php
                             die;
                         }
                     }
@@ -67,18 +73,19 @@
                 }
                 else
                 {
-                    echo "<font size = 6><b>ไม่มีชื่อผู้ใช้นี้ในระบบ</b></font>";
-                    ?><form method = post action = index.php>
-                        <input type = submit value = "กลับไปเข้าสู่ระบบ">
-                    </form><?php
+?>
+                    <p class="header">ไม่มีชื่อผู้ใช้นี้ในระบบ</p>
+                    <form method = post action = index.php>
+                        <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
+                    </form>
+<?php
                     die;
                 }
             }
-
-            echo "<font size = 8>Welcome, " . $user . ". </font>";
-        ?>
+?>
+        <p class="header">ยินดีต้อนรับ</p>
 
         <form method = post action = index.php>
-            <input class = login type = submit value = "ออกจากระบบ">
+            <input class = login type = submit value = "เข้าสู่คอมพิวเตอร์">
         </form></center>
         </body>

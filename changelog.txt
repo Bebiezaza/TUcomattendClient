@@ -5,6 +5,9 @@
 * = Changed, Tweaked, Fixed
 
 
+Alpha 1.0.4
+	+ login logging
+
 Alpha 1.0.3
 	+ fetch client date-time
 	+ passwords encrypted

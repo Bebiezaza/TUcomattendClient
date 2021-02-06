@@ -90,13 +90,11 @@
             VALUES ('$datetime', '$internalIP', '$user');";
 
             //write table
-            work($conn, $sql, "Data Written to Table 'computer_log' Successfully", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
+            work($conn, $sql, "<p class='header'>ยินดีต้อนรับ</p>", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
 
         //sql disconnect
             mysqli_close($conn);
 ?>
-        <p class="header">ยินดีต้อนรับ</p>
-
         <form method = post action = index.php>
             <input class = login type = submit value = "เข้าสู่คอมพิวเตอร์">
         </form></center>

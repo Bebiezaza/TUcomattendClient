@@ -5,6 +5,9 @@
 * = Changed, Tweaked, Fixed
 
 
+Beta 1.0.0
+	- removed some debug notes, keeping computer's internal IP note
+
 Alpha 1.0.4
 	+ login logging
 

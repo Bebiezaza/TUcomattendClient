@@ -37,7 +37,7 @@
 
     <div class = "login"><form method = post autocomplete = "off">
         <label for = "login_name">รหัสนักเรียน</label><br>
-        <input id = "login_name" type = "text" name = "login_name"><br><br>
+        <input id = "login_name" type = "text" maxlength="5" name = "login_name"><br><br>
         
         <label for = "login_name">รหัสผ่าน</label><br>
         <input id = "login_pass" type = "password" name = "login_pass"><br><br>

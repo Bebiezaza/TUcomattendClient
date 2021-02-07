@@ -2,7 +2,7 @@
 <html lang = "th">
 <head>
     <meta charset = "utf-8">
-    <title>ลงทะเบียนระบบเข้าใช้คอมพิวเตอร์</title>
+    <title>ระบบเข้าใช้คอมพิวเตอร์ โรงเรียนเตรียมอุดมศึกษา</title>
 </head>
 <link href="css/theme.css" rel="stylesheet"/>
     

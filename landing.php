@@ -32,7 +32,7 @@
             if ($user == "")
             {
 ?>
-                <p class="header">ไม่ได้ลงชื่อผู้ใช้งาน</p>
+                <p class="header">ไม่ได้ใส่รหัสนักเรียน</p>
                 <form method = post action = index.php>
                     <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
                 </form>
@@ -54,7 +54,7 @@
                         if ($user != $row["username"])
                         {
 ?>
-                            <p class="header">ไม่มีชื่อผู้ใช้นี้ในระบบ</p>
+                            <p class="header">ไม่มีรหัสนักเรียนนี้ในระบบ</p>
                             <form method = post action = index.php>
                                 <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
                             </form>
@@ -77,7 +77,7 @@
                 else
                 {
 ?>
-                    <p class="header">ไม่มีชื่อผู้ใช้นี้ในระบบ</p>
+                    <p class="header">ไม่มีรหัสนักเรียนนี้ในระบบ</p>
                     <form method = post action = index.php>
                         <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
                     </form>

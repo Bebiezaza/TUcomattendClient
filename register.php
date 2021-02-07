@@ -84,9 +84,9 @@
             }
             ?>
         </select>
-        <br><br>
+        <br><!--<br>
 
-        <label for = "login_name">รูปบัตรประชาชน (future)</label><br>
+        <label for = "login_name">รูปบัตรประชาชน (future)</label><br>-->
         </div>
         
         <input class = login type = submit value = "ลงทะเบียน">

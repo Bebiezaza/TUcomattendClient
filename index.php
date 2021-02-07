@@ -31,13 +31,15 @@
                 date_default_timezone_set('Asia/Bangkok');
                 $unixOBJ = date_create();
                 $unixINT = date_timestamp_get($unixOBJ);
-                $datetime = date("Y-m-d\TH:i:s", $unixINT);
+                $datetime = date("Y-m-d \TH:i:s", $unixINT);
+                
+                $global_localIP = $_SERVER['REMOTE_ADDR'];
         ?>
-        <p class = "header">[DEBUG] Your local IP is: <?php $global_localIP = $_SERVER['REMOTE_ADDR']; echo $global_localIP; ?></p>
+        <p class = "header">[DEBUG] Your local IP is: <?php echo $global_localIP; ?></p>
         
         <div class = "login"><form method = "post" action = "landing.php" autocomplete = "off">
             <input type = "hidden" name = "internalIP" value = <?php echo $global_localIP ?>>
-            <input type = "hidden" name = "datetime" value = <?php echo $datetime ?>>
+            <input type = "hidden" name = "datetime" value = <?php echo "'$datetime'" ?>>
 
             <label for = "login_name">รหัสนักเรียน</label><br>
             <input id = "login_name" type = "text" name = "login_name"><br><br>

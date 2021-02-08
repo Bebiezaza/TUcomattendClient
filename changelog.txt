@@ -5,6 +5,9 @@
 * = Changed, Tweaked, Fixed
 
 
+Beta 1.0.2
+	+ customizable database name
+
 Beta 1.0.1
 	+ registration now requires password confirmation
 	* student's ID length limited for index page

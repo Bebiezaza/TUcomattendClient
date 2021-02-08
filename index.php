@@ -23,7 +23,7 @@
             include($server_path . 'config.php');
             $conn = mysqli_connect($db_host, $db_user, $db_pass);
 
-            if (!mysqli_select_db($conn, "TUcomattend"))
+            if (!mysqli_select_db($conn, "$db_name"))
             {
                 echo "<p class = 'header'>ไม่ได้มีการตั้งค่าระบบฐานข้อมูล โปรดติดต่อผู้ดูแลระบบ</p>";
             }

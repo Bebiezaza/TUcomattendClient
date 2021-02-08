@@ -108,7 +108,7 @@
             else
             {
             //select database
-                selectDB($conn, "TUcomattend");
+                selectDB($conn, "$db_name");
 
             //add default student login
                 $sql = "INSERT INTO student_login

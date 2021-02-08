@@ -46,7 +46,7 @@
             }
 
             //select database
-            selectDB($conn, "TUcomattend");
+            selectDB($conn, "$db_name");
 
             $sql = "SELECT * from student_login WHERE username = '$user'";
             if($result = mysqli_query($conn, $sql))

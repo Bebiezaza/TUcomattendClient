@@ -19,13 +19,15 @@
     </header>
 
     <center><?php
-        include('../TUcomattendServer/config.php');
+        include('config.php');
+        include($server_path . 'config.php');
         include('function/sql.php');
         $conn = mysqli_connect($db_host, $db_user, $db_pass);
         error_reporting(0);
 
-        $user = $_POST["login_name"];
-        $pass = $_POST["login_pass"];
+        $user = $_POST["user"];
+        $pass = $_POST["pass"];
+        $conf = $_POST["pass_conf"];
         $bday = $_POST["bday"];
         $bmonth = $_POST["bmonth"];
         $byear = $_POST["byear"];
@@ -36,44 +38,37 @@
     ?>
 
     <div class = "login"><form method = post autocomplete = "off">
-        <label for = "login_name">รหัสนักเรียน</label><br>
-        <input id = "login_name" type = "text" maxlength="5" name = "login_name"><br><br>
+        <label for = "user">รหัสนักเรียน</label><br>
+        <input id = "user" type = "text" maxlength="5" name = "user"><br><br>
         
-        <label for = "login_name">รหัสผ่าน</label><br>
-        <input id = "login_pass" type = "password" name = "login_pass"><br><br>
+        <label for = "pass">รหัสผ่าน</label><br>
+        <input id = "pass" type = "password" name = "pass"><br><br>
+
+        <label for = "pass_conf">ยืนยันรหัสผ่าน</label><br>
+        <input id = "pass_conf" type = "password" name = "pass_conf"><br><br>
 
         <label for="bday">วันเกิด</label>
         <select id="bday" name="bday">
-            <option value = "01">01</option>
-            <option value = "02">02</option>
-            <option value = "03">03</option>
-            <option value = "04">04</option>
-            <option value = "05">05</option>
-            <option value = "06">06</option>
-            <option value = "07">07</option>
-            <option value = "08">08</option>
-            <option value = "09">09</option>
-            <?php for($i = 10; $i <= 31; $i++)
+            <?php for($i = 1; $i <= 31; $i++)
             {
-                echo "<option value=" . $i . ">" . $i . "</option>";
+                if (strlen($i) == 1) { $j = "0" . $i; }
+                else { $j = $i; }
+                
+                echo "<option value=" . $j . ">" . $j . "</option>";
             }
             ?>
         </select>
 
         <label for="bmonth">เดือนเกิด</label>
         <select id="bmonth" name="bmonth">
-            <option value = "01">01</option>
-            <option value = "02">02</option>
-            <option value = "03">03</option>
-            <option value = "04">04</option>
-            <option value = "05">05</option>
-            <option value = "06">06</option>
-            <option value = "07">07</option>
-            <option value = "08">08</option>
-            <option value = "09">09</option>
-            <option value = "10">10</option>
-            <option value = "11">11</option>
-            <option value = "12">12</option>
+        <?php for($i = 1; $i <= 12; $i++)
+            {
+                if (strlen($i) == 1) { $j = "0" . $i; }
+                else { $j = $i; }
+                
+                echo "<option value=" . $j . ">" . $j . "</option>";
+            }
+        ?>
         </select>
 
         <label for="byear">ปีเกิด</label>
@@ -86,7 +81,7 @@
         </select>
         <br><!--<br>
 
-        <label for = "login_name">รูปบัตรประชาชน (future)</label><br>-->
+        <label for = "user">รูปบัตรประชาชน (future)</label><br>-->
         </div>
         
         <input class = login type = submit value = "ลงทะเบียน">
@@ -105,6 +100,10 @@
             if(!(int)$user)
             {
                 echo "<div class = 'login'>ลงทะเบียนไม่สำเร็จ <br> รหัสนักเรียนไม่เป็นตัวเลข</div>";
+            }
+            else if ($pass != $conf)
+            {
+                echo "<div class = 'login'>ลงทะเบียนไม่สำเร็จ <br> รหัสผ่านไม่สามารถยืนยันได้</div>";
             }
             else
             {

@@ -5,6 +5,14 @@
 * = Changed, Tweaked, Fixed
 
 
+Beta 1.0.1
+	+ registration now requires password confirmation
+	* student's ID length limited for index page
+	* login and register buttons are sepapared farther apart
+	* minor bug fixed; moved date-time fetching system to prevent duplicate entry
+	* made changing between two configurations more easily
+	- removed a button which would redirect back to index page, soon to be replaced
+
 Beta 1.0.0
 	- removed some debug notes, keeping computer's internal IP note
 

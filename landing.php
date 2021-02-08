@@ -19,7 +19,8 @@
         </header>
 
         <center><?php
-            include('../TUcomattendServer/config.php');
+            include('config.php');
+            include($server_path . 'config.php');
             include('function/sql.php');
             $conn = mysqli_connect($db_host, $db_user, $db_pass);
 
@@ -27,7 +28,11 @@
             $pass = md5($_POST["login_pass"]);
 
             $internalIP = $_POST["internalIP"];
-            $datetime = $_POST["datetime"];
+            
+            date_default_timezone_set('Asia/Bangkok');
+            $unixOBJ = date_create();
+            $unixINT = date_timestamp_get($unixOBJ);
+            $datetime = date("Y-m-d \TH:i:s", $unixINT);
 
             if ($user == "")
             {
@@ -90,13 +95,14 @@
             VALUES ('$datetime', '$internalIP', '$user');";
 
             //write table
-            work($conn, $sql, "<p class='header'>ยินดีต้อนรับ</p>", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
+            work($conn, $sql, "<p class='header'>ยินดีต้อนรับ <br> ปิดหน้าต่างนี้ได้</p>", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
 
         //sql disconnect
             mysqli_close($conn);
 ?>
-        <form method = post action = index.php>
+        <!--<form method = post action = "index.php">
             <input class = login type = submit value = "เข้าสู่คอมพิวเตอร์">
-        </form></center>
+        </form>-->
+    </center>
     </body>
 </html>

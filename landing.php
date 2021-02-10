@@ -3,22 +3,17 @@
     <head>
         <meta charset = "utf-8">
         <title>ระบบเข้าใช้คอมพิวเตอร์ โรงเรียนเตรียมอุดมศึกษา</title>
+
+<link href="css/theme.css" rel="stylesheet"/>
     </head>
-    <link href="css/theme.css" rel="stylesheet"/>
-        
-<style>
-    @font-face {
-        font-family: Kanit;
-        src: url(fonts/Kanit-Regular.ttf)
-    }
-</style>
 
     <body>
         <header>
             <p class = "header"><IMG id = "TUlogo" src = "pictures/phrakiao.png">ระบบเข้าใช้คอมพิวเตอร์</p>
         </header>
 
-        <center><?php
+        <center>
+<?php
             include('config.php');
             include($server_path . 'config.php');
             include('function/sql.php');
@@ -27,22 +22,14 @@
             $user = $_POST["login_name"];
             $pass = md5($_POST["login_pass"]);
 
-            $internalIP = $_POST["internalIP"];
-            
             date_default_timezone_set('Asia/Bangkok');
-            $unixOBJ = date_create();
-            $unixINT = date_timestamp_get($unixOBJ);
-            $datetime = date("Y-m-d \TH:i:s", $unixINT);
+            $datetime = date("Y-m-d \TH:i:s", date_timestamp_get(date_create()));
+
+            $internalIP = $_SERVER['REMOTE_ADDR'];
 
             if ($user == "")
             {
-?>
-                <p class="header">ไม่ได้ใส่รหัสนักเรียน</p>
-                <form method = post action = index.php>
-                    <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
-                </form>
-<?php
-                die;
+                landingFailed($conn, "ไม่ได้ใส่รหัสนักเรียน");
             }
 
             //select database
@@ -58,36 +45,20 @@
                     {
                         if ($user != $row["username"])
                         {
-?>
-                            <p class="header">ไม่มีรหัสนักเรียนนี้ในระบบ</p>
-                            <form method = post action = index.php>
-                                <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
-                            </form>
-<?php
-                            die;
+                            mysqli_free_result($result);
+                            landingFailed($conn, "ไม่มีรหัสนักเรียนนี้ในระบบ");
                         }
                         elseif ($pass != $row["password"])
                         {
-?>
-                            <p class="header">รหัสผ่านผิด</p>
-                            <form method = post action = index.php>
-                                <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
-                            </form>
-<?php
-                            die;
+                            mysqli_free_result($result);
+                            landingFailed($conn, "รหัสผ่านไม่ถูกต้อง");
                         }
                     }
                     mysqli_free_result($result);
                 }
                 else
                 {
-?>
-                    <p class="header">ไม่มีรหัสนักเรียนนี้ในระบบ</p>
-                    <form method = post action = index.php>
-                        <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
-                    </form>
-<?php
-                    die;
+                    landingFailed($conn, "ไม่มีรหัสนักเรียนนี้ในระบบ");
                 }
             }
         //add admin login
@@ -95,14 +66,15 @@
             VALUES ('$datetime', '$internalIP', '$user');";
 
             //write table
-            work($conn, $sql, "<p class='header'>ยินดีต้อนรับ <br> ปิดหน้าต่างนี้ได้</p>", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
-
-        //sql disconnect
-            mysqli_close($conn);
+            work($conn, $sql, "ยินดีต้อนรับ", "เกิดปัญหา โปรดติดต่อผู้ดูแลระบบ: ", true);
 ?>
-        <!--<form method = post action = "index.php">
-            <input class = login type = submit value = "เข้าสู่คอมพิวเตอร์">
-        </form>-->
-    </center>
+            <form method = get action = "https://www.google.com">
+                <input class = "login" type = "submit" value = "> เข้าสู่คอมพิวเตอร์<">
+            </form>
+        </center>
+        
+        <footer>
+            <a class = "footerlink" href="http://www.triamudom.ac.th">โรงเรียนเตรียมอุดมศึกษา</a>
+        </footer>
     </body>
 </html>

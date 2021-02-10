@@ -5,6 +5,18 @@
 * = Changed, Tweaked, Fixed
 
 
+Beta 1.1.0
+	+ added a button which would redirect to google.com
+	+ turned some repeated set of codes into functions
+	* (internal) register page rewrite
+	* move link to Triamudom Suksa website from program's home page to landing page
+	
+	bug fixes
+	* disconnects SQL after every page finishes accessing SQL
+	* (internal) adhere coding to self coding convention
+	* (internal) removed some unnecessary variables
+	* (internal) make comments accurate
+
 Beta 1.0.2
 	+ customizable database name
 

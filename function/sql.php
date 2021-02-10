@@ -5,40 +5,49 @@
         if (!mysqli_select_db($conn, $dbname))
         {
             echo "<h1>Error Using Database: " . mysqli_error($conn) . "</h1><br>";
-            
             echo "<form method = 'post' action = 'index.php'><input type = 'submit' value = 'กลับสู่หน้าหลัก'></form>";
+
             die;
         }
     }
 
+//landing failed notice
+    function landingFailed($conn, $text)
+    {
+        echo "<p class='header'>$text</p>";
+?>
+        <form action = index.php>
+            <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
+        </form>
+<?php
+        //sql disconnect
+        mysqli_close($conn);
+        
+        die;
+    }
+
 //work function
-    function work($conn, $sql, $success, $fail, $death)
+    function work($conn, $sql, $success, $fail, $redir)
     {
         if (!mysqli_query($conn, $sql))
         {
-            echo "<h1>" . $fail . mysqli_error($conn) . "</h1><br>";
-            if($death == true)
+            echo "<p class='header'>" . $fail . mysqli_error($conn) . "</p><br>";
+            if($redir == true)
             {
-                echo "<form method = 'post' action = 'index.php'><input type = 'submit' value = 'กลับสู่หน้าหลัก'></form>";
+                echo "<form action = 'index.php'><input class = 'login_fail' type = 'submit' value = '> กลับสู่หน้าหลัก <'></form>";
+                
+                //sql disconnect
+                mysqli_close($conn);
+                
                 die;
             }
         }
         else
         {
-            echo $success . "<br>";
-        }
-    }
+            echo "<p class='header'>" . $success . "</p><br>";
 
-//register function
-    function register($conn, $sql, $success, $fail)
-    {
-        if (!mysqli_query($conn, $sql))
-        {
-            echo $fail . /*mysqli_error($conn) . */"</div>";
-        }
-        else
-        {
-            echo $success;
+            //sql disconnect
+            mysqli_close($conn);
         }
     }
 ?>

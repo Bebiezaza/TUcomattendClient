@@ -7,6 +7,9 @@
             echo "<h1>Error Using Database: " . mysqli_error($conn) . "</h1><br>";
             echo "<form method = 'post' action = 'index.php'><input type = 'submit' value = 'กลับสู่หน้าหลัก'></form>";
 
+            //sql disconnect
+            mysqli_close($conn);
+
             die;
         }
     }

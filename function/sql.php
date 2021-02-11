@@ -19,7 +19,7 @@
     {
         echo "<p class='header'>$text</p>";
 ?>
-        <form action = index.php>
+        <form method = "post" action = index.php>
             <input class = "login_fail" type = submit value = "> กลับไปเข้าสู่ระบบ <">
         </form>
 <?php

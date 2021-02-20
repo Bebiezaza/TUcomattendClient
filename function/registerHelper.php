@@ -25,7 +25,7 @@
     {
         if (!mysqli_query($conn, $sql))
         {
-            registerFailed($fail);
+            registerFailed($conn, $fail);
         }
         else
         {

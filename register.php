@@ -16,7 +16,7 @@
 <?php
             include('config.php');
             include($server_path . 'config.php');
-            include('function/sql.php');
+            include('function/sqlHelper.php');
             include('function/registerHelper.php');
             
             if (isset($_POST['register']))

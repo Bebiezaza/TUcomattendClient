@@ -16,7 +16,7 @@
 <?php
             include('config.php');
             include($server_path . 'config.php');
-            include('function/sql.php');
+            include('function/sqlHelper.php');
             $conn = mysqli_connect($db_host, $db_user, $db_pass);
 
             $user = $_POST["login_name"];
